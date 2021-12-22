@@ -27,7 +27,7 @@ public class SimpleDualBidiMap<Key extends Comparable<Key>, Value extends Compar
     }
 
     @Override
-    public Value put(Key key, Value value) {
+    public void put(Key key, Value value) {
         if (normalMap.containsKey(key)) {
             reverseMap.remove(normalMap.get(key));
         }
@@ -36,7 +36,6 @@ public class SimpleDualBidiMap<Key extends Comparable<Key>, Value extends Compar
         }
         final Value obj = normalMap.put(key, value);
         reverseMap.put(value, key);
-        return obj;
     }
 
     @Override
@@ -79,5 +78,19 @@ public class SimpleDualBidiMap<Key extends Comparable<Key>, Value extends Compar
     @Override
     public Collection<Value> values() {
         return normalMap.values();
+    }
+    @Override
+    public Collection<Key> keys() {
+        return reverseMap.values();
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return normalMap.isEmpty();
+    }
+
+    @Override
+    public int size() {
+        return normalMap.size();
     }
 }
